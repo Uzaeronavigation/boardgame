@@ -26,6 +26,11 @@ function clearPrizeImage() {
 }
 
 drawButton.addEventListener("click", () => {
+  drawButton.classList.add("loading");
+
+  setTimeout(() => {
+     drawButton.classList.remove("loading");
+
   clearPrizeImage();
   const gotBonus = Math.random() < 0.5;
   if (gotBonus) {
@@ -37,16 +42,20 @@ drawButton.addEventListener("click", () => {
     const img = document.createElement("img");
     img.src = bonus.img;
     img.alt = bonus.name;
-    img.style.maxWidth = "150px";
+    img.style.maxWidth = "200px";
     img.style.marginTop = "10px";
     prizeImageDiv.appendChild(img);
   } else {
     resultDiv.textContent = "Увы! Бонус не получен.";
   }
   updateHistoryDisplay();
+}, 1500);
 });
 
 resetButton.addEventListener("click", () => {
+  const totalPoints = history.reduce((sum, b) => sum +b.points, 0);
+  alert(`Игра завершена! Ваше колличество очков: ${totalPoints}`);
+
   if (confirm("Вы уверены, что хотите сбросить очки?")) {
     history = [];
     localStorage.removeItem("bonusHistory");
