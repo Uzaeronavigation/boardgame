@@ -49,7 +49,7 @@ drawButton.addEventListener("click", () => {
     resultDiv.textContent = "Увы! Бонус не получен.";
   }
   updateHistoryDisplay();
-}, 1500);
+}, 270);
 });
 
 resetButton.addEventListener("click", () => {
